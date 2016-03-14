@@ -169,5 +169,14 @@ namespace Jitbit.Utils
 			var data = Encoding.UTF8.GetBytes(Export());
 			return Encoding.UTF8.GetPreamble().Concat(data).ToArray();
 		}
+		/// <summary>
+		/// Exports bytes 
+		/// 为了支持中文，使用Excel打开时不乱码
+		/// </summary>
+		public byte[] ExportToBytesOnGB2312()
+        	{
+            		var data = Encoding.UTF8.GetBytes(Export());
+            		return Encoding.Convert(Encoding.UTF8, Encoding.GetEncoding("gb2312"), data);
+        	}
 	}
 }
